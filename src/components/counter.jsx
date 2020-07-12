@@ -10,10 +10,10 @@ class Counter extends Component {
     fontWeight: "bold",
   };
 
-  constructor() {
-    super();
-    this.handleIncrement.bind(this);
-  }
+  // constructor() {
+  //   super();
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  // }
 
   renderTags() {
     if (this.state.tags.length === 0) return <p>There are no tags!</p>;
@@ -21,9 +21,13 @@ class Counter extends Component {
     return this.state.tags.map((tag) => <li key={tag}>{tag}</li>);
   }
 
-  handleIncrement() {
-    console.log("Increment clicked", this);
-  }
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  doHandle = (product) => {
+    console.log(product.id);
+  };
 
   render() {
     return (
@@ -38,6 +42,7 @@ class Counter extends Component {
         >
           Increment
         </button>
+        <button onClick={() => this.doHandle({ id: 1 })}> INC</button>
         <ul>{this.renderTags()}</ul>
       </div>
     );
